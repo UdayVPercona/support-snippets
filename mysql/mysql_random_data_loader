@@ -2,7 +2,7 @@ mysql_random_data_loader
 
 This script helps populate tables with desired number of rows and offers configuration items like multiple concurrent threads and chunk sizes...etc.
 
-Why ?
+**Why ?**
 
 In many cases, we would like to test/replicate/troubleshoot locally a behaviour on the database exeprienced on the customer side. Many such cases involving prearing a test bed with some test contents. This tool helps populating the schema of customer with test data locally. This is an early stage project and supports foreign keys as well. 
 
