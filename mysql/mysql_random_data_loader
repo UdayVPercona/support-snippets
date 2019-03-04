@@ -1,0 +1,41 @@
+mysql_random_data_loader
+
+This script helps populate tables with desired number of rows and offers configuration items like multiple concurrent threads and chunk sizes...etc.
+
+Why ?
+
+In many cases, we would like to test/replicate/troubleshoot locally a behaviour on the database exeprienced on the customer side. Many such cases involving prearing a test bed with some test contents. This tool helps populating the schema of customer with test data locally. This is an early stage project and supports foreign keys as well. 
+
+Usage
+
+Download the latest release of the tool from Github repository and the link given below, make it executable and place it under /usr/bin which is where most of the executables on Linux will reside.
+https://github.com/Percona-Lab/mysql_random_data_load/releases
+chmod +x mysql_random_data_loader
+cp mysql_random_data_loader /usr/bin/
+
+
+Example:
+
+Ex1:
+In the below example, I loaded the table FTS_table with 1000 rows. 
+root@percona-Inspiron-5570:~# Scripts/mysql_random_data_loader --user=root --password=xxxxxxx FTS FTS_table 1000
+INFO[2019-03-04T11:12:10+05:30] Starting                                     
+   0s [====================================================================] 100%
+INFO[2019-03-04T11:12:11+05:30] 1000 rows inserted              
+
+
+Ex2:
+In the below example, I loaded the table FTS_table with 10000 rows with two simultaneous threads.
+root@percona-Inspiron-5570:~# mysql_random_data_loader --user=root --password=root123 --max-threads=2 FTS FTS_table 10000
+INFO[2019-03-04T11:18:49+05:30] Starting                                     
+   1s [====================================================================] 100%
+INFO[2019-03-04T11:18:53+05:30] 10000 rows inserted
+
+Ex3:
+In the below example, I loaded the table FTS_table with 30000 rows with two simultaneous threads and with a chunk size of 3000 records.
+root@percona-Inspiron-5570:~# mysql_random_data_loader --user=root --password=root123 --max-threads=2 --bulk-size=3000 FTS FTS_table 30000
+INFO[2019-03-04T11:20:58+05:30] Starting                                     
+   4s [====================================================================] 100%
+INFO[2019-03-04T11:21:05+05:30] 30000 rows inserted         
+
+
